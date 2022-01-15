@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EquiposController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +34,13 @@ Route::get('primera',function(){
 //Route::get('equipo',[EquiposController::class,'index'])->name('equipo.index');
 
 Route::resource('equipo', EquiposController::class);
+Route::resource('docentes',DocenteController::class);
 
+Route::get('consulta',[EquiposController::class,'rawSelect'])->name('consultas1');
+Route::get('consultas2',[EquiposController::class,'queryBuilder'])->name('consultas2');
+/*Route::get('migrar', function(){
+    Artisan::call('migrate:refresh');
+});*/
 /*
 Route::get('/', function ($nombre = "Invitado") {
     $edad = 34;
