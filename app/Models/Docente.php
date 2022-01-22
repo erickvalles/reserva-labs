@@ -13,10 +13,15 @@ class Docente extends Model
     protected $primaryKey = "codigo";
     protected $incremental = false;
     use HasFactory;
-    protected $fillable = ['codigo','nombre','ap','am','correo'];
+    protected $fillable = ['nombre','ap','am','correo'];
+    protected $appends = ['nombreCompleto'];
 
 
     public function telefonos(){
         return $this->hasMany(Telefono::class);
+    }
+
+    public function getNombreCompletoAttribute(){
+        return $this->nombre.' '.$this->ap." ".$this->am;
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DocenteRequest;
 use App\Models\Docente;
 use Illuminate\Http\Request;
 
 class DocenteController extends Controller
 {
+    private $nombre = "Profesores";
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +16,9 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        $profes = Docente::onlyTrashed()->count();
-        return $profes;
+        $profes = Docente::orderBy('created_at','desc')->paginate(10);
+
+        return view('docente.index', with(['profes'=>$profes,'nombreSeccion'=>$this->nombre]));
     }
 
     /**
@@ -25,45 +28,8 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        /*$docente = new Docente();
-        $docente->codigo = '2954456';
-        $docente->nombre = "Erick";
-        $docente->ap = "Guerrero";
-        $docente->am = "M";
-        $docente->correo = "erickg@valles.udg.mx";
-        $docente->save();*/
 
-       /* $profe = Docente::make([
-            'codigo' => '2954458',
-            'nombre' => "Jorge",
-            'ap' => "Guerrero",
-            'am' => "M",
-            'correo' => "erickg@valles.udg.mx"
-        ]);
-
-        $profe->save();*/
-
-        /*$profe = Docente::create([
-            'codigo' => '2954460',
-            'nombre' => "Roberto",
-            'ap' => "Guerrero",
-            'am' => "M",
-            'correo' => "robertog@valles.udg.mx"
-        ]);*/
-
-        /* actualizar
-        $profe = Docente::find('70301');
-        $profe->ap = "Álvarez";
-        $profe->save();*/
-
-        /*$profe = Docente::withTrashed()->where('codigo','92775')->first();
-        $profe->forceDelete();*/
-
-        $profes = Docente::with('telefonos')->get();
-
-
-
-        return $profes;
+        return view('docente.create', with(['nombreSeccion'=>$this->nombre]));
 
     }
 
@@ -73,9 +39,10 @@ class DocenteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DocenteRequest $request)
     {
-        //
+        Docente::create($request->all());
+        return redirect()->route('docentes.index');
     }
 
     /**
@@ -86,7 +53,7 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
-        //
+        return view('docente.show', with(['nombreSeccion'=>$this->nombre,'docente'=>$docente]));
     }
 
     /**
@@ -97,7 +64,7 @@ class DocenteController extends Controller
      */
     public function edit(Docente $docente)
     {
-        //
+        return view('docente.edit', with(['nombreSeccion'=>$this->nombre,'profesor'=>$docente]));
     }
 
     /**
@@ -107,9 +74,11 @@ class DocenteController extends Controller
      * @param  \App\Models\Docente  $docente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Docente $docente)
+    public function update(DocenteRequest $request, Docente $docente)
     {
-        //
+        $docente->update($request->only(['nombre','ap','am','correo']));
+        $request->session()->flash('mensaje', "Editado exitosamente");
+        return redirect()->back();
     }
 
     /**
@@ -120,6 +89,7 @@ class DocenteController extends Controller
      */
     public function destroy(Docente $docente)
     {
-        //
+        $docente->delete();
+        return redirect()->route('docentes.index');
     }
 }
