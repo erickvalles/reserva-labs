@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PracticaRequest;
+use App\Models\Practica;
+
 
 class PracticasController extends Controller
 {
+    private $nombreSeccion = "Prácticas";
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +16,8 @@ class PracticasController extends Controller
      */
     public function index()
     {
-        //
+        $practicas = Practica::paginate(10);
+        return view('practica.index', with(['practicas'=>$practicas,'nombreSeccion'=>$this->nombreSeccion]));
     }
 
     /**
@@ -23,7 +27,7 @@ class PracticasController extends Controller
      */
     public function create()
     {
-        //
+        return view('practica.create', with(['nombreSeccion'=>$this->nombreSeccion]));
     }
 
     /**
@@ -32,9 +36,10 @@ class PracticasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PracticaRequest $request)
     {
-        //
+        Practica::create($request->all());
+        return redirect()->route('practicas.index');
     }
 
     /**
@@ -43,9 +48,9 @@ class PracticasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Practica $practica)
     {
-        //
+        return view('practica.show', with(['practica'=>$practica, 'nombreSeccion'=>$this->nombreSeccion]));
     }
 
     /**
@@ -54,9 +59,10 @@ class PracticasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Practica $practica)
     {
-        //
+
+        return view('practica.edit', with(['practica'=>$practica,'nombreSeccion'=>$this->nombreSeccion]));
     }
 
     /**
@@ -66,9 +72,11 @@ class PracticasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PracticaRequest $request, Practica $practica)
     {
-        //
+        $practica->update($request->all());
+        $request->session()->flash('mensaje', "Editado exitosamente");
+        return redirect()->back();
     }
 
     /**
@@ -77,8 +85,9 @@ class PracticasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Practica $practica)
     {
-        //
+        $practica->delete();
+        return redirect()->route('practicas.index');
     }
 }
