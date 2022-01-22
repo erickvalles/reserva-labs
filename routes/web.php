@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EquiposController;
+use App\Http\Controllers\LaboratorioController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::get('primera',function(){
 
 Route::resource('equipo', EquiposController::class);
 Route::resource('docentes',DocenteController::class);
+Route::resource('laboratorios', LaboratorioController::class);;
 
 Route::get('consulta',[EquiposController::class,'rawSelect'])->name('consultas1');
 Route::get('consultas2',[EquiposController::class,'queryBuilder'])->name('consultas2');

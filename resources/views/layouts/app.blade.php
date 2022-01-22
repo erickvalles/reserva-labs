@@ -30,9 +30,12 @@
 <div class="wrapper">
 
   <!-- Preloader -->
+  @if (Route::is('home'))
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
   </div>
+  @endif
+
 
   <!-- Navbar -->
   @include('partials.navbar')
@@ -86,9 +89,9 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      
-      @yield('main_content')  
-      
+
+      @yield('main_content')
+
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
