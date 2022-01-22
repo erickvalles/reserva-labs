@@ -4,6 +4,7 @@ use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\LaboratorioController;
+use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PracticasController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::resource('docentes',DocenteController::class);
 Route::resource('laboratorios', LaboratorioController::class);
 Route::resource('practicas', PracticasController::class);
 Route::resource('carreras', CarreraController::class);
+Route::resource('materias', MateriaController::class);
 
 Route::get('consulta',[EquiposController::class,'rawSelect'])->name('consultas1');
 Route::get('consultas2',[EquiposController::class,'queryBuilder'])->name('consultas2');

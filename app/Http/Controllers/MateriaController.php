@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MateriaRequest;
+use App\Models\Carrera;
 use App\Models\Materia;
 use Illuminate\Http\Request;
 
 class MateriaController extends Controller
 {
+    private $nombre = "Materias";
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,8 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        //
+        $materias = Materia::paginate(20);
+        return view('materia.index', with(['materias'=>$materias,'nombreSeccion'=>$this->nombre]));
     }
 
     /**
@@ -24,7 +28,8 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        $carreras = Carrera::all();
+        return view('materia.create', with(['nombreSeccion'=>$this->nombre,'carreras'=>$carreras]));
     }
 
     /**
@@ -33,9 +38,10 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MateriaRequest $request)
     {
-        //
+        Materia::create($request->all());
+        return redirect()->route('materias.index');
     }
 
     /**
@@ -46,7 +52,7 @@ class MateriaController extends Controller
      */
     public function show(Materia $materia)
     {
-        //
+        return view('materia.show', with(['materia'=>$materia,'nombreSeccion'=>$this->nombre]));
     }
 
     /**
@@ -57,7 +63,8 @@ class MateriaController extends Controller
      */
     public function edit(Materia $materia)
     {
-        //
+        $carreras = Carrera::all();
+        return view('materia.edit', with(['carreras'=>$carreras,'materia'=>$materia,'nombreSeccion'=>$this->nombre]));
     }
 
     /**
@@ -67,9 +74,11 @@ class MateriaController extends Controller
      * @param  \App\Models\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Materia $materia)
+    public function update(MateriaRequest $request, Materia $materia)
     {
-        //
+        $materia->update($request->all());
+        $request->session()->flash('mensaje', "Editado exitosamente");
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +89,7 @@ class MateriaController extends Controller
      */
     public function destroy(Materia $materia)
     {
-        //
+        $materia->delete();
+        return redirect()->route('materias.index');
     }
 }
