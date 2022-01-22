@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarreraRequest;
 use App\Models\Carrera;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
 {
+    private $nombre = "Carreras";
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,8 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        //
+        $carreras = Carrera::paginate(5);
+        return view('carrera.index',with(['carreras'=>$carreras,'nombreSeccion'=>$this->nombre]));
     }
 
     /**
@@ -24,7 +27,7 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        //
+        return view('carrera.create', with(['nombreSeccion'=>$this->nombre]));
     }
 
     /**
@@ -33,9 +36,11 @@ class CarreraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CarreraRequest $request)
     {
-        //
+        Carrera::create($request->all());
+
+        return redirect()->route('carreras.index');
     }
 
     /**
@@ -46,7 +51,7 @@ class CarreraController extends Controller
      */
     public function show(Carrera $carrera)
     {
-        //
+        return view('carrera.show', with(['carrera'=>$carrera,'nombreSeccion'=>$this->nombre]));
     }
 
     /**
@@ -57,7 +62,7 @@ class CarreraController extends Controller
      */
     public function edit(Carrera $carrera)
     {
-        //
+        return view('carrera.edit', with(['carrera'=>$carrera,'nombreSeccion'=>$this->nombre]));
     }
 
     /**
@@ -67,9 +72,11 @@ class CarreraController extends Controller
      * @param  \App\Models\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrera $carrera)
+    public function update(CarreraRequest $request, Carrera $carrera)
     {
-        //
+        $carrera->update($request->all());
+        $request->session()->flash('mensaje', "Editado exitosamente");
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +87,7 @@ class CarreraController extends Controller
      */
     public function destroy(Carrera $carrera)
     {
-        //
+        $carrera->delete();
+        return redirect()->route('carreras.index');
     }
 }

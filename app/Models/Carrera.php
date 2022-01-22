@@ -9,6 +9,8 @@ class Carrera extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'clave';
+
     protected $fillable=[
         'nombre'
     ];
