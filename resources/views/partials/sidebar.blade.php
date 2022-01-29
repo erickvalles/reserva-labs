@@ -238,6 +238,36 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                Reservas
+                <i class="fas fa-angle-left right"></i>
+
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('reservas.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ver reservas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('reservas.create')}}" class="nav-link">
+                  <i class="far fa-calendar-plus"></i>
+                  <p>Crear reservas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('reservas.calendario')}}" class="nav-link">
+                  <i class="far fa-calendar"></i>
+                  <p>Ver calendario</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
 
         </ul>

@@ -6,6 +6,7 @@ use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PracticasController;
+use App\Http\Controllers\ReservaController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,8 @@ Route::resource('laboratorios', LaboratorioController::class);
 Route::resource('practicas', PracticasController::class);
 Route::resource('carreras', CarreraController::class);
 Route::resource('materias', MateriaController::class);
+Route::resource('reservas',ReservaController::class);
+Route::get('calendario',[ReservaController::class,'calendario'])->name('reservas.calendario');
 
 
 Route::get('consulta',[EquiposController::class,'rawSelect'])->name('consultas1');
