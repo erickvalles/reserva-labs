@@ -39,10 +39,13 @@ Route::get('primera',function(){
 
 Route::resource('equipo', EquiposController::class);
 Route::resource('docentes',DocenteController::class);
+Route::post('guardar_telefono',[DocenteController::class,'guardar_telefono'])->name('guardar_telefono');
+Route::delete('delete_phone/{telefono}',[DocenteController::class,'eliminar_telefono'])->name('eliminar_telefono');
 Route::resource('laboratorios', LaboratorioController::class);
 Route::resource('practicas', PracticasController::class);
 Route::resource('carreras', CarreraController::class);
 Route::resource('materias', MateriaController::class);
+
 
 Route::get('consulta',[EquiposController::class,'rawSelect'])->name('consultas1');
 Route::get('consultas2',[EquiposController::class,'queryBuilder'])->name('consultas2');

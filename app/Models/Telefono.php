@@ -9,6 +9,12 @@ class Telefono extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'area',
+        'numero',
+        'docente_codigo'
+    ];
+
 
     public function docente(){
         return $this->belongsTo(Docente::class);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DocenteRequest;
 use App\Models\Docente;
+use App\Models\Telefono;
 use Illuminate\Http\Request;
 
 class DocenteController extends Controller
@@ -65,6 +66,27 @@ class DocenteController extends Controller
     public function edit(Docente $docente)
     {
         return view('docente.edit', with(['nombreSeccion'=>$this->nombre,'profesor'=>$docente]));
+    }
+
+
+
+    public function guardar_telefono(Request $request){
+        //dd($request->all());
+        $telefonoValido = $request->validate([
+            'area'=>'required|size:3',
+            'numero'=>'required|size:7',
+            'docente_codigo'=>'required'
+        ]);
+
+        Telefono::create($telefonoValido);
+
+        return redirect()->back();
+
+    }
+
+    public function eliminar_telefono(Telefono $telefono){
+        $telefono->delete();
+        return redirect()->back();
     }
 
     /**
