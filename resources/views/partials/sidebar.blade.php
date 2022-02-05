@@ -21,69 +21,9 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Prácticas de laboratorio
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('primera')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Primera página</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Navbar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+          <li class="nav-item  @if(\Request::routeIs('equipo.*')) menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link @if(\Request::routeIs('equipo.*')) active @endif">
+            <i class="fas fa-microchip"></i>
               <p>
                 Equipo
                 <i class="fas fa-angle-left right"></i>
@@ -92,13 +32,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('equipo.index')}}" class="nav-link">
+                <a href="{{route('equipo.index')}}" class="nav-link @if(\Request::routeIs('equipo.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ver equipo</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('equipo.create')}}" class="nav-link">
+                <a href="{{route('equipo.create')}}" class="nav-link  @if(\Request::routeIs('equipo.create')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear equipo</p>
                 </a>
@@ -118,9 +58,9 @@
 
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+          <li class="nav-item  @if(\Request::routeIs('laboratorios.*')) menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link @if(\Request::routeIs('laboratorios.*')) active @endif">
+            <i class="fas fa-flask"></i>
               <p>
                 Laboratorios
                 <i class="fas fa-angle-left right"></i>
@@ -129,22 +69,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('laboratorios.index')}}" class="nav-link">
+                <a href="{{route('laboratorios.index')}}" class="nav-link @if(\Request::routeIs('laboratorios.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ver laboratorios</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('laboratorios.create')}}" class="nav-link">
+                <a href="{{route('laboratorios.create')}}" class="nav-link  @if(\Request::routeIs('laboratorios.create')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear laboratorio</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+          <li class="nav-item  @if(\Request::routeIs('practicas.*')) menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link @if(\Request::routeIs('practicas.*')) active @endif">
+                <i class="fas fa-ruler-combined"></i>
               <p>
                 Prácticas
                 <i class="fas fa-angle-left right"></i>
@@ -153,22 +93,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('practicas.index')}}" class="nav-link">
+                <a href="{{route('practicas.index')}}" class="nav-link  @if(\Request::routeIs('practicas.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ver prácticas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('practicas.create')}}" class="nav-link">
+                <a href="{{route('practicas.create')}}" class="nav-link  @if(\Request::routeIs('practicas.create')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear práctica</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+          <li class="nav-item  @if(\Request::routeIs('carreras.*')) menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link @if(\Request::routeIs('carreras.*')) active @endif">
+            <i class="fas fa-graduation-cap"></i>
               <p>
                 Carreras
                 <i class="fas fa-angle-left right"></i>
@@ -177,22 +117,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('carreras.index')}}" class="nav-link">
+                <a href="{{route('carreras.index')}}" class="nav-link @if(\Request::routeIs('carreras.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ver carreras</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('carreras.create')}}" class="nav-link">
+                <a href="{{route('carreras.create')}}" class="nav-link  @if(\Request::routeIs('carreras.create')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear carrera</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+          <li class="nav-item  @if(\Request::routeIs('materias.*')) menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link @if(\Request::routeIs('materias.*')) active @endif">
+                <i class="fas fa-chalkboard-teacher"></i>
               <p>
                 Materias
                 <i class="fas fa-angle-left right"></i>
@@ -201,22 +141,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('materias.index')}}" class="nav-link">
+                <a href="{{route('materias.index')}}" class="nav-link @if(\Request::routeIs('materias.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ver materias</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('materias.create')}}" class="nav-link">
+                <a href="{{route('materias.create')}}" class="nav-link @if(\Request::routeIs('materias.create')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear materia</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+          <li class="nav-item  @if(\Request::routeIs('docentes.*')) menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link @if(\Request::routeIs('docentes.*')) active @endif">
+                <i class="fas fa-user-tie"></i>
               <p>
                 Docentes
                 <i class="fas fa-angle-left right"></i>
@@ -225,21 +165,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('docentes.index')}}" class="nav-link">
+                <a href="{{route('docentes.index')}}" class="nav-link @if(\Request::routeIs('docentes.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ver docentes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('docentes.create')}}" class="nav-link">
+                <a href="{{route('docentes.create')}}" class="nav-link @if(\Request::routeIs('docentes.create')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear docente</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item  @if(\Request::routeIs('reservas.*')) menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link @if(\Request::routeIs('reservas.*')) active @endif">
               <i class="nav-icon fas fa-calendar"></i>
               <p>
                 Reservas
@@ -249,24 +189,35 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('reservas.index')}}" class="nav-link">
+                <a href="{{route('reservas.index')}}" class="nav-link @if(\Request::routeIs('reservas.index')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ver reservas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('reservas.create')}}" class="nav-link">
+                <a href="{{route('reservas.create')}}" class="nav-link @if(\Request::routeIs('reservas.create')) active @endif">
                   <i class="far fa-calendar-plus"></i>
                   <p>Crear reservas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('reservas.calendario')}}" class="nav-link">
+                <a href="{{route('reservas.calendario')}}" class="nav-link @if(\Request::routeIs('reservas.calendario')) active @endif">
                   <i class="far fa-calendar"></i>
                   <p>Ver calendario</p>
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li class="nav-item">
+              <form action="{{route('logout')}}" method="POST" id="salir">
+                @csrf
+                <a href="#" class="nav-link" onclick="return document.getElementById('salir').submit(); ">
+                    <i class="fas fa-sign-out-alt"></i>
+                  <p>Salir</p>
+            </form>
+
+            </a>
           </li>
 
 
