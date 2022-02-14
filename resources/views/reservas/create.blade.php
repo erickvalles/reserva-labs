@@ -124,7 +124,7 @@
                                                 <input class="form-check-input" type="checkbox" name="practicas[]" value="{{$practica->id}}">{{$practica->nombre}}</label>
                                         </div>
                                         @endforeach
-                                </div>
+                                    </div>
                             </div>
 
                             <div class="row">

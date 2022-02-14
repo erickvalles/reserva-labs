@@ -7,6 +7,7 @@ use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PracticasController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,7 @@ Route::get('/',function(){
     $nombreSeccion = "Dashboard";
     return view('dashboard',compact('nombreSeccion'));
 })->name('home')->middleware('auth');
-
+/*
 Route::get('prueba/larga/estilos', function(){
     $nombreSeccion = "Dashboard interno";
     return view('dashboard',compact('nombreSeccion'));
@@ -35,7 +36,7 @@ Route::get('primera',function(){
     $nombreSeccion = "Primera vista";
     return view('primera',compact('nombreSeccion'));
 })->name('primera');
-
+*/
 //Route::get('equipo',[EquiposController::class,'index'])->name('equipo.index');
 
 Route::middleware(['auth'])->group(function(){
@@ -49,6 +50,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('materias', MateriaController::class);
     Route::resource('reservas',ReservaController::class);
     Route::get('calendario',[ReservaController::class,'calendario'])->name('reservas.calendario');
+    Route::resource('usuarios',UsuariosController::class);
 });
 
 

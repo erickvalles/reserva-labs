@@ -7,8 +7,14 @@ use App\Models\Laboratorio;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
+
 class LaboratorioController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:Administrador']);
+    }
     /**
      * Display a listing of the resource.
      *

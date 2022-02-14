@@ -4,23 +4,16 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            <a href="{{route('home')}}" class="nav-link">
+            <a href="{{route('home')}}" class="nav-link @if(Request::routeIs('home'))
+                active
+            @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{route('ruta_interna')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Dashboard interno
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+          @role('Administrador')
           <li class="nav-item  @if(\Request::routeIs('equipo.*')) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link @if(\Request::routeIs('equipo.*')) active @endif">
             <i class="fas fa-microchip"></i>
@@ -58,6 +51,7 @@
 
             </ul>
           </li>
+
           <li class="nav-item  @if(\Request::routeIs('laboratorios.*')) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link @if(\Request::routeIs('laboratorios.*')) active @endif">
             <i class="fas fa-flask"></i>
@@ -82,6 +76,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item  @if(\Request::routeIs('practicas.*')) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link @if(\Request::routeIs('practicas.*')) active @endif">
                 <i class="fas fa-ruler-combined"></i>
@@ -106,6 +101,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item  @if(\Request::routeIs('carreras.*')) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link @if(\Request::routeIs('carreras.*')) active @endif">
             <i class="fas fa-graduation-cap"></i>
@@ -130,6 +126,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item  @if(\Request::routeIs('materias.*')) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link @if(\Request::routeIs('materias.*')) active @endif">
                 <i class="fas fa-chalkboard-teacher"></i>
@@ -139,6 +136,7 @@
 
               </p>
             </a>
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('materias.index')}}" class="nav-link @if(\Request::routeIs('materias.index')) active @endif">
@@ -154,6 +152,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item  @if(\Request::routeIs('docentes.*')) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link @if(\Request::routeIs('docentes.*')) active @endif">
                 <i class="fas fa-user-tie"></i>
@@ -178,6 +177,7 @@
               </li>
             </ul>
           </li>
+          @endrole
           <li class="nav-item  @if(\Request::routeIs('reservas.*')) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link @if(\Request::routeIs('reservas.*')) active @endif">
               <i class="nav-icon fas fa-calendar"></i>
@@ -194,12 +194,14 @@
                   <p>Ver reservas</p>
                 </a>
               </li>
+              @role('Administrador')
               <li class="nav-item">
                 <a href="{{route('reservas.create')}}" class="nav-link @if(\Request::routeIs('reservas.create')) active @endif">
                   <i class="far fa-calendar-plus"></i>
                   <p>Crear reservas</p>
                 </a>
               </li>
+              @endrole
               <li class="nav-item">
                 <a href="{{route('reservas.calendario')}}" class="nav-link @if(\Request::routeIs('reservas.calendario')) active @endif">
                   <i class="far fa-calendar"></i>

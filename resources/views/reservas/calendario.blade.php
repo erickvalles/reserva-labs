@@ -42,7 +42,7 @@
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridWeek',
-        height:700,
+        height:900,
         locale:'es',
         events: {!!$reservas!!}
       });
